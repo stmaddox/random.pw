@@ -11,39 +11,46 @@ var generatePassword = function() {
   //Step 4. Prompt whether at least one character type has been selected 
   //Step 5. Generate password that matches the criteria
   //Step 6. Display the password generated either in an alert or written to the page 
-
-  var passwordLength = prompt("Please pick a password length between 8 and 128 characters");
-  console.log(passwordLength);
-  if (passwordLength >= 8 && passwordLength <=128){
-    var lowLetterCheck = confirm("Does your password need lowercase letters?");
-    console.log(lowLetterCheck);
-    var upLetterCheck = confirm("Does your password need uppercase letters?");
-    console.log(upLetterCheck);
-    var numCheck = confirm("Does your password need numbers?")
-    console.log(numCheck);
-    var specialCharCheck = confirm("Does your password need special characters?")
-    console.log(specialCharCheck);
-    if (lowLetterCheck === true){
-      var pickLow = Math.floor(Math.random()*lowLetter.length)
-      finalPassword = finalPassword + lowLetter.charAt(pickLow)
-    }
-    if (upLetterCheck === true){
-      var pickUp = Math.floor(Math.random()*upLetter.length)
-      finalPassword = finalPassword + upLetter.charAt(pickUp)
-    }
-    if (numCheck === true){
-      var pickNum = Math.floor(Math.random()*number.length)
-      finalPassword = finalPassword + number.charAt(pickNum)
-    }
-    if (specialCharCheck ===  true){
-      var pickSpecChar = Math.floor(Math.random()*specialChar.length)
-      finalPassword = finalPassword + specialChar.charAt(pickSpecChar)
-    }
-  } else{
+var passwordLength = prompt("Please pick a password length between 8 and 128 characters");
+  console.log(passwordLength);  
+  //for(i=0; i < passwordLength; i++)
+    if (passwordLength >= 8 && passwordLength <=128){
+      var lowLetterCheck = confirm("Does your password need lowercase letters?");
+      console.log(lowLetterCheck);
+      var upLetterCheck = confirm("Does your password need uppercase letters?");
+      console.log(upLetterCheck);
+      var numCheck = confirm("Does your password need numbers?")
+      console.log(numCheck);
+      var specialCharCheck = confirm("Does your password need special characters?")
+      console.log(specialCharCheck);
+      if (lowLetterCheck === true){
+        var pickLow = Math.floor(Math.random()*lowLetter.length)
+        finalPassword = finalPassword + lowLetter.charAt(pickLow)
+      }
+      if (upLetterCheck === true){
+        var pickUp = Math.floor(Math.random()*upLetter.length)
+        finalPassword = finalPassword + upLetter.charAt(pickUp)
+      }
+      if (numCheck === true){
+        var pickNum = Math.floor(Math.random()*number.length)
+        finalPassword = finalPassword + number.charAt(pickNum)
+      }
+      if (specialCharCheck ===  true){
+        var pickSpecChar = Math.floor(Math.random()*specialChar.length)
+        finalPassword = finalPassword + specialChar.charAt(pickSpecChar)
+      }
+  }  else{
     alert("Please choose a password length between 8 and 128 characters")
-  }
+  }  
+  for(let i=0; finalPassword < passwordLength;i++) {
+    let generate = [{pickLow} + {pickUp} + {pickNum} + {pickSpecChar}]; 
+    finalPassword += generate;
+  } 
+  
   return finalPassword
-}
+  
+};
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
