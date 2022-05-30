@@ -37,29 +37,33 @@ var generatePassword = function () {
     console.log(numCheck);
     var specialCharCheck = confirm("Does your password need special characters?")
     console.log(specialCharCheck);
+  
+    var arrPassword = []
+
     if (lowLetterCheck === true) {
-      var pickLow = Math.floor(Math.random() * lowLetter.length)
-      arrPassword.push(pickLow[i])
+      //var pickLow = Math.floor(Math.random() * lowLetter.length)
+      arrPassword.push(pickLow())
     }
     if (upLetterCheck === true) {
-      var pickUp = Math.floor(Math.random() * upLetter.length)
-     arrPassword.push(pickUp[i])
+      //var pickUp = Math.floor(Math.random() * upLetter.length)
+     arrPassword.push(pickUp())
     }
     if (numCheck === true) {
-      var pickNum = Math.floor(Math.random() * number.length)
-      arrPassword.push(pickNum[i])
+      //var pickNum = Math.floor(Math.random() * number.length)
+      arrPassword.push(pickNum())
     }
     if (specialCharCheck === true) {
-      var pickSpecChar = Math.floor(Math.random() * specialChar.length)
-      arrPassword.push(pickSpecChar[i])
+      //var pickSpecChar = Math.floor(Math.random() * specialChar.length)
+      arrPassword.push(pickSpecChar())
     }
+
     }  else {
     alert("Please choose a password length between 8 and 128 characters")
     }   
-var arrPassword = []
+
 
 for(i=0; i < passwordLength; i++) {
-  var randomChar = arrPassword[Math.floor(Math.random()*arrPassword.length)]()
+  var randomChar = arrPassword[Math.floor(Math.random()*arrPassword.length)]
   finalPassword += randomChar
 };
 
