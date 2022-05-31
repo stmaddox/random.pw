@@ -3,22 +3,10 @@ var lowLetter = "abcdefghijklmnopqrstuvwxyz"
 var upLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var number = "0123456789"
 var specialChar = "!@#$%^&*()_-=+><.,"
-var finalPassword = ""
-var pickLow = function() {
-  return Math.floor(Math.random()*lowLetter.length)
-};
-var pickUp = function() {
-  return Math.floor(Math.random()* upLetter.length)
-};
-var pickNum = function() {
-  return Math.floor(Math.random()* number.length)
-};
-var pickSpecChar = function() {
-  return Math.floor(Math.random()* specialChar.length)
-};
 
 
 var generatePassword = function () {
+  var finalPassword = ""
   //step 1. click button to generate password
   //Step 2. When we click it prompts length of password 8-128 characters
   //Step 3. Choose if password needs lowercase letter, uppercase letter, numbers, and/or special characters
@@ -27,7 +15,7 @@ var generatePassword = function () {
   //Step 6. Display the password generated either in an alert or written to the page 
   var passwordLength = prompt("Please pick a password length between 8 and 128 characters");
   console.log(passwordLength);
-  //for(i=0; i < passwordLength; i++)
+
   if (passwordLength >= 8 && passwordLength <= 128) {
     var lowLetterCheck = confirm("Does your password need lowercase letters?");
     console.log(lowLetterCheck);
@@ -37,38 +25,39 @@ var generatePassword = function () {
     console.log(numCheck);
     var specialCharCheck = confirm("Does your password need special characters?")
     console.log(specialCharCheck);
-  
-    var arrPassword = []
-
-    if (lowLetterCheck === true) {
-      //var pickLow = Math.floor(Math.random() * lowLetter.length)
-      arrPassword.push(pickLow())
-    }
-    if (upLetterCheck === true) {
-      //var pickUp = Math.floor(Math.random() * upLetter.length)
-     arrPassword.push(pickUp())
-    }
-    if (numCheck === true) {
-      //var pickNum = Math.floor(Math.random() * number.length)
-      arrPassword.push(pickNum())
-    }
-    if (specialCharCheck === true) {
-      //var pickSpecChar = Math.floor(Math.random() * specialChar.length)
-      arrPassword.push(pickSpecChar())
+    if (lowLetterCheck === false && upLetterCheck === false && numCheck === false && specialCharCheck === false) {
+      alert("You need to select at least to have at least lower letter, upper letter, number, or special character.")
+      return ""
     }
 
-    }  else {
+    for (i = 0; i < passwordLength; i++) {
+      if (lowLetterCheck === true && finalPassword.length < passwordLength) {
+        var pickLowIndex = Math.floor(Math.random() * lowLetter.length)
+        finalPassword = finalPassword + lowLetter[pickLowIndex]
+      }
+      if (upLetterCheck === true && finalPassword.length < passwordLength) {
+        var pickUpIndex = Math.floor(Math.random() * upLetter.length)
+        finalPassword = finalPassword + upLetter[pickUpIndex]
+      }
+      if (numCheck === true && finalPassword.length < passwordLength) {
+        var pickNumIndex = Math.floor(Math.random() * number.length)
+        finalPassword = finalPassword + number[pickNumIndex]
+      }
+      if (specialCharCheck === true && finalPassword.length < passwordLength) {
+        var pickSpecCharIndex = Math.floor(Math.random() * specialChar.length)
+        finalPassword = finalPassword + specialChar[pickSpecCharIndex]
+      }
+    }
+  } else {
     alert("Please choose a password length between 8 and 128 characters")
-    }   
+  }
 
+  finalPassword = finalPassword.split("").sort(function() {
+    return Math.random()-0.5
+  }) 
 
-for(i=0; i < passwordLength; i++) {
-  var randomChar = arrPassword[Math.floor(Math.random()*arrPassword.length)]
-  finalPassword += randomChar
-};
+  return finalPassword.join("")
 
-return finalPassword
-  
 };
 
 
