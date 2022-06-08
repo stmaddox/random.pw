@@ -1,5 +1,13 @@
 // Assignment code here
-
+function generatePassword() {
+  var char = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var pwLength = 8; 
+  var password = "";
+  for (var i=0;i<pwLength.length;++i) {
+    password =+ char.charAt(Math.floor(Math.random() * char.length));
+  }
+  return generatePassword();
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
